@@ -99,7 +99,7 @@
             
             <div class="flex-1 flex justify-center">
                 <div class="relative w-64 h-64 md:w-80 md:h-80 bg-indigo-200 dark:bg-indigo-900 rounded-full overflow-hidden shadow-2xl ring-8 ring-indigo-100 dark:ring-indigo-950">
-                    <img src="./Assets/STh-999;s logo(professinal).png" alt="Profile" class="w-full h-full object-cover">
+                    <img id="portfolio-logo" src="./Assets/STh-999;s logo(professinal).png" alt="Profile" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -182,7 +182,7 @@
 
                 <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between transition-all duration-300" data-category="javascript">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Project 2" class="w-full h-48 object-cover">
+                        <img src="./Assets/My-to-do-list-app.png" alt="Project 2" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">JavaScript</span>
                             <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-1 mb-2">Task Management App</h3>
@@ -190,8 +190,8 @@
                         </div>
                     </div>
                     <div class="p-6 pt-0 flex justify-between">
-                        <a href="#" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium inline-flex items-center gap-1">Live Demo <i class="fas fa-external-link-alt text-xs"></i></a>
-                        <a href="#" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium inline-flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://gamertawhid58-lgtm.github.io/Do-to-list-by-STH-999/" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium inline-flex items-center gap-1">Live Real project <i class="fas fa-external-link-alt text-xs"></i></a>
+                        <a href="https://github.com/gamertawhid58-lgtm" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium inline-flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
 
@@ -294,24 +294,33 @@
             });
         });
 
-        // --- 2. Dark Mode Logic ---
+        // --- 2. Dark Mode Logic with Logo Switching ---
         const html = document.documentElement;
         const toggleBtn = document.getElementById('dark-mode-toggle');
         const toggleBtnMobile = document.getElementById('dark-mode-toggle-mobile');
+        const portfolioLogo = document.getElementById('portfolio-logo');
 
-        // Check local storage or system preference
+        // Logo Paths
+        const lightLogo = "./Assets/STh-999;s logo(professinal).png";
+        const darkLogo = "./Assets/STh-999;s logo(professinal)(black).png";
+
+        // Check local storage or system preference on load
         if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
+            if(portfolioLogo) portfolioLogo.src = darkLogo;
         } else {
             html.classList.remove('dark');
+            if(portfolioLogo) portfolioLogo.src = lightLogo;
         }
 
         function toggleDarkMode() {
             html.classList.toggle('dark');
             if (html.classList.contains('dark')) {
                 localStorage.setItem('theme', 'dark');
+                if(portfolioLogo) portfolioLogo.src = darkLogo;
             } else {
                 localStorage.setItem('theme', 'light');
+                if(portfolioLogo) portfolioLogo.src = lightLogo;
             }
         }
 
