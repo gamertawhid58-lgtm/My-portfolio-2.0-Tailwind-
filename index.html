@@ -1,32 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind dark mode configuration
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS for Typing Animation Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans scroll-smooth">
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100 font-sans transition-colors duration-300">
 
-    <nav class="bg-white shadow-md fixed w-full z-50 top-0 left-0">
+    <nav class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md fixed w-full z-50 top-0 left-0 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
-                    <a href="#" class="text-2xl font-bold text-indigo-600">STH-999</a>
+                    <a href="#" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">STH-999</a>
                 </div>
                 
                 <div class="hidden md:flex space-x-8 font-medium items-center">
-                    <a href="#home" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
-                    <a href="#about" class="text-gray-600 hover:text-indigo-600 transition">About</a>
-                    <a href="#skills" class="text-gray-600 hover:text-indigo-600 transition">Skills</a>
-                    <a href="#projects" class="text-gray-600 hover:text-indigo-600 transition">Projects</a>
-                    <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                    <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Home</a>
+                    <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
+                    <a href="#skills" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Skills</a>
+                    <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projects</a>
+                    <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
+                    
+                    <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-xl text-gray-600 dark:text-gray-300 transition">
+                        <i id="dark-icon" class="fas fa-moon dark:hidden"></i>
+                        <i id="light-icon" class="fas fa-sun hidden dark:block text-amber-400"></i>
+                    </button>
+
                     <a href="./Assets/Black And White Modern Resume (A3).png" class="bg-indigo-600 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-700 transition" download="STH-999 C.V">Resume</a>
                 </div>
 
-                <div class="md:hidden flex items-center">
-                    <button id="menu-btn" class="text-gray-600 focus:outline-none text-2xl h-8 w-8 flex items-center justify-center">
+                <div class="md:hidden flex items-center space-x-4">
+                    <button id="dark-mode-toggle-mobile" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-xl text-gray-600 dark:text-gray-300 transition">
+                        <i id="dark-icon-mobile" class="fas fa-moon dark:hidden"></i>
+                        <i id="light-icon-mobile" class="fas fa-sun hidden dark:block text-amber-400"></i>
+                    </button>
+
+                    <button id="menu-btn" class="text-gray-600 dark:text-gray-300 focus:outline-none text-2xl h-8 w-8 flex items-center justify-center">
                         <i id="hamburger-icon" class="fas fa-bars"></i>
                         <i id="close-icon" class="fas fa-times hidden"></i>
                     </button>
@@ -34,89 +62,89 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 text-center font-medium">
-                <a href="#home" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition">Home</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition">About</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition">Skills</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition">Projects</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition">Contact</a>
-                <a href="./Assets/Black And White Modern Resume (A3).png" class="block px-3 py-2 rounded-md text-indigo-600 font-semibold hover:bg-indigo-50 transition" download="STH-999 C.V">Download C.V</a>
+                <a href="#home" class="block px-3 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projects</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
+                <a href="./Assets/Black And White Modern Resume (A3).png" class="block px-3 py-2 rounded-md text-indigo-600 dark:text-indigo-400 font-semibold hover:bg-indigo-50 dark:hover:bg-gray-800 transition" download="STH-999 C.V">Download C.V</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="pt-32 pb-20 md:pt-48 md:pb-32 bg-gradient-to-br from-indigo-50 to-white">
+    <section id="home" class="pt-32 pb-20 md:pt-48 md:pb-32 bg-gradient-to-br from-indigo-50 to-white dark:from-gray-900 dark:to-gray-950 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="flex-1 text-center md:text-left">
-                <span class="text-indigo-600 font-semibold tracking-wide uppercase block mb-2">Welcome to my world</span>
-                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
-                    Hi, I'm <span class="text-indigo-600">Syed Tawhidul Hoque</span>
+                <span class="text-indigo-600 dark:text-indigo-400 font-semibold tracking-wide uppercase block mb-2">Welcome to my world</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4 leading-tight min-h-[70px] md:min-h-[130px]">
+                    Hi, I'm <span id="typing-text" class="text-indigo-600 dark:text-indigo-400 typing-cursor"></span>
                 </h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
+                <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto md:mx-0">
                     A passionate Front-end Web Developer specialized in building beautiful, functional, and user-centric digital experiences.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-6">
                     <a href="#projects" class="bg-indigo-600 text-white px-8 py-3 rounded-md font-medium shadow-lg hover:bg-indigo-700 transition text-center">View My Work</a>
-                    <a href="#contact" class="bg-white text-gray-700 border border-gray-300 px-8 py-3 rounded-md font-medium hover:bg-gray-50 transition text-center">Let's Talk</a>
+                    <a href="#contact" class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-700 px-8 py-3 rounded-md font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition text-center">Let's Talk</a>
                 </div>
-                <div class="flex justify-center md:justify-start space-x-6 text-2xl text-gray-600">
-                    <a href="https://github.com/gamertawhid58-lgtm" target="_blank" class="hover:text-indigo-600 transition"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/tawhidul-hoque-syed-815535419" target="_blank" class="hover:text-indigo-600 transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="hover:text-indigo-600 transition"><i class="fab fa-x-twitter"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61586243663370" target="_blank" class="hover:text-indigo-600 transition"><i class="fab fa-facebook"></i></a>
+                <div class="flex justify-center md:justify-start space-x-6 text-2xl text-gray-600 dark:text-gray-400">
+                    <a href="https://github.com/gamertawhid58-lgtm" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/tawhidul-hoque-syed-815535419" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61586243663370" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
             
             <div class="flex-1 flex justify-center">
-                <div class="relative w-64 h-64 md:w-80 md:h-80 bg-indigo-200 rounded-full overflow-hidden shadow-2xl ring-8 ring-indigo-100">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 bg-indigo-200 dark:bg-indigo-900 rounded-full overflow-hidden shadow-2xl ring-8 ring-indigo-100 dark:ring-indigo-950">
                     <img src="./Assets/STH-999 logo for fav-icon.png" alt="Profile" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">About Me</h2>
-            <div class="w-16 h-1 bg-indigo-600 mx-auto mb-8"></div>
-            <p class="text-lg text-gray-600 leading-relaxed mb-6">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
+            <div class="w-16 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-8"></div>
+            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
                 My journey as a front-end developer began with a deep interest in IT and web development. I love creating pixel-perfect, responsive, and user-friendly interfaces. Besides coding, learning new technologies and bringing them to life is one of my main hobbies.
             </p>
         </div>
     </section>
 
-    <section id="skills" class="py-20 bg-gray-50">
+    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-gray-900 text-center mb-4">My Skills</h2>
-            <div class="w-16 h-1 bg-indigo-600 mx-auto mb-12"></div>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-4">My Skills</h2>
+            <div class="w-16 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
             
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 text-center">
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fab fa-html5 text-orange-500 text-4xl mb-3"></i>
                     <h3 class="font-semibold">HTML5</h3>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fab fa-css3-alt text-blue-500 text-4xl mb-3"></i>
                     <h3 class="font-semibold">CSS3</h3>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fab fa-js text-yellow-500 text-4xl mb-3"></i>
                     <h3 class="font-semibold">JavaScript</h3>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fas fa-code text-indigo-500 text-4xl mb-3"></i>
                     <h3 class="font-semibold">Tailwind CSS</h3>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fab fa-python text-sky-600 text-4xl mb-3"></i>
                     <h3 class="font-semibold">Python</h3>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fas fa-bolt text-amber-500 text-4xl mb-3 animate-pulse"></i>
                     <h3 class="font-semibold">Vibe Coding</h3>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fab fa-git-alt text-orange-600 text-4xl mb-3"></i>
                     <h3 class="font-semibold">Git & GitHub</h3>
                 </div>
@@ -124,84 +152,107 @@
         </div>
     </section>
 
-    <section id="projects" class="py-20 bg-white">
+    <section id="projects" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-gray-900 text-center mb-4">My Projects</h2>
-            <div class="w-16 h-1 bg-indigo-600 mx-auto mb-12"></div>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-4">My Projects</h2>
+            <div class="w-16 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-8"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg overflow-hidden shadow-md border border-gray-100 flex flex-col justify-between">
+            <div class="flex justify-center space-x-4 mb-12 flex-wrap gap-y-2">
+                <button class="filter-btn px-6 py-2 rounded-full font-medium bg-indigo-600 text-white shadow-md transition" data-filter="all">All</button>
+                <button class="filter-btn px-6 py-2 rounded-full font-medium bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition" data-filter="javascript">JavaScript</button>
+                <button class="filter-btn px-6 py-2 rounded-full font-medium bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition" data-filter="python">Python</button>
+            </div>
+
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between transition-all duration-300" data-category="javascript">
                     <div>
                         <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="Project 1" class="w-full h-48 object-cover">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">E-Commerce Frontend</h3>
-                            <p class="text-gray-600 mb-4 text-sm">একটি সম্পূর্ণ রেসপনসিভ ই-কমার্স ল্যান্ডিং পেজ যা Tailwind CSS এবং JavaScript দিয়ে তৈরি।</p>
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">JavaScript</span>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-1 mb-2">E-Commerce Frontend</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">একটি সম্পূর্ণ রেসপনসিভ ই-কমার্স ল্যান্ডিং পেজ যা Tailwind CSS এবং JavaScript দিয়ে তৈরি।</p>
                         </div>
                     </div>
                     <div class="p-6 pt-0 flex justify-between">
-                        <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center gap-1">Live Demo <i class="fas fa-external-link-alt text-xs"></i></a>
-                        <a href="#" target="_blank" class="text-gray-600 hover:text-gray-900 font-medium inline-flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="#" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium inline-flex items-center gap-1">Live Demo <i class="fas fa-external-link-alt text-xs"></i></a>
+                        <a href="#" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium inline-flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-lg overflow-hidden shadow-md border border-gray-100 flex flex-col justify-between">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between transition-all duration-300" data-category="javascript">
                     <div>
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Project 2" class="w-full h-48 object-cover">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">Task Management App</h3>
-                            <p class="text-gray-600 mb-4 text-sm">ব্যবহারকারীদের দৈনন্দিন কাজের হিসাব রাখার জন্য একটি সুন্দর ড্যাশবোর্ড বা টু-ডু অ্যাপ্লিকেশন।</p>
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">JavaScript</span>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-1 mb-2">Task Management App</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">ব্যবহারকারীদের দৈনন্দিন কাজের হিসাব রাখার জন্য একটি সুন্দর ড্যাশবোর্ড বা টু-ডু অ্যাপ্লিকেশন।</p>
                         </div>
                     </div>
                     <div class="p-6 pt-0 flex justify-between">
-                        <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center gap-1">Live Demo <i class="fas fa-external-link-alt text-xs"></i></a>
-                        <a href="#" target="_blank" class="text-gray-600 hover:text-gray-900 font-medium inline-flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="#" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium inline-flex items-center gap-1">Live Demo <i class="fas fa-external-link-alt text-xs"></i></a>
+                        <a href="#" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium inline-flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 flex flex-col justify-between transition-all duration-300" data-category="python">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Project 3" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Python</span>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-1 mb-2">Automation Script</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">দৈনন্দিন বোরিং ফাইল অর্গানাইজেশন বা স্ক্র্যাপিং সহজ করার জন্য একটি শক্তিশালী পাইথন স্ক্রিপ্ট।</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex justify-between">
+                        <a href="#" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium inline-flex items-center gap-1">Live Demo <i class="fas fa-external-link-alt text-xs"></i></a>
+                        <a href="#" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium inline-flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 bg-gray-50">
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-gray-900 text-center mb-4">Let's Connect</h2>
-            <div class="w-16 h-1 bg-indigo-600 mx-auto mb-12"></div>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-4">Let's Connect</h2>
+            <div class="w-16 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="space-y-6">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Contact Information</h3>
-                    <p class="text-gray-600">Feel free to message me if you have any project ideas, collaboration opportunities, or questions.</p>
+                    <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Contact Information</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Feel free to message me if you have any project ideas, collaboration opportunities, or questions.</p>
                     <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-lg"><i class="fas fa-envelope"></i></div>
+                        <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center text-lg"><i class="fas fa-envelope"></i></div>
                         <div>
                             <p class="text-xs text-gray-500">Email Me</p>
-                            <a href="mailto:gamertawhid58@gmail.com" class="text-gray-700 font-medium hover:text-indigo-600">gamertawhid58@gmail.com</a>
+                            <a href="mailto:gamertawhid58@gmail.com" class="text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-600 dark:hover:text-indigo-400">gamertawhid58@gmail.com</a>
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-lg"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center text-lg"><i class="fas fa-map-marker-alt"></i></div>
                         <div>
                             <p class="text-xs text-gray-500">Location</p>
-                            <p class="text-gray-700 font-medium">Rajshahi, Pabna, Bangladesh</p>
+                            <p class="text-gray-700 dark:text-gray-200 font-medium">Rajshahi, Pabna, Bangladesh</p>
                         </div>
                     </div>
                 </div>
 
-                <form action="https://api.web3forms.com/submit" method="POST" class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 space-y-4">
+                <form action="https://api.web3forms.com/submit" method="POST" class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 space-y-4">
                     <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
                     <input type="hidden" name="from_name" value="STH-999 Portfolio Connection">
                     <input type="hidden" name="replyto" value="gamertawhid58@gmail.com">
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                        <input type="text" name="name" required placeholder="John Doe" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+                        <input type="text" name="name" required placeholder="John Doe" class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
-                        <input type="email" name="email" required placeholder="example@email.com" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
+                        <input type="email" name="email" required placeholder="example@email.com" class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                        <textarea name="message" rows="4" required placeholder="Write your message here..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                        <textarea name="message" rows="4" required placeholder="Write your message here..." class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-indigo-600 text-white font-medium py-2 rounded-md hover:bg-indigo-700 transition shadow-md">Send Message</button>
                 </form>
@@ -209,7 +260,7 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800 dark:border-gray-900">
         <div class="max-w-6xl mx-auto px-4 text-center space-y-4">
             <p class="text-white font-semibold text-lg">STH-999</p>
             <div class="flex justify-center space-x-6 text-xl">
@@ -222,6 +273,7 @@
     </footer>
 
     <script>
+        // --- 1. Hamburger Menu Logic ---
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const hamburgerIcon = document.getElementById('hamburger-icon');
@@ -235,12 +287,102 @@
         }
 
         menuBtn.addEventListener('click', toggleMenu);
-
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    toggleMenu();
-                }
+                if (!mobileMenu.classList.contains('hidden')) toggleMenu();
+            });
+        });
+
+        // --- 2. Dark Mode Logic ---
+        const html = document.documentElement;
+        const toggleBtn = document.getElementById('dark-mode-toggle');
+        const toggleBtnMobile = document.getElementById('dark-mode-toggle-mobile');
+
+        // Check local storage or system preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        function toggleDarkMode() {
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        toggleBtn.addEventListener('click', toggleDarkMode);
+        toggleBtnMobile.addEventListener('click', toggleDarkMode);
+
+
+        // --- 3. Typing Animation Logic ---
+        const words = ["Syed Tawhidul Hoque", "a Vibe Coder", "a Front-end Developer"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const turnDelay = 2000;
+        const typingTextEl = document.getElementById('typing-text');
+
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typingTextEl.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingTextEl.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeTimeout = isDeleting ? deletingSpeed : typingSpeed;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeTimeout = turnDelay;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeTimeout = 500;
+            }
+
+            setTimeout(type, typeTimeout);
+        }
+        // Start Typing on Load
+        document.addEventListener('DOMContentLoaded', () => setTimeout(type, 500));
+
+
+        // --- 4. Project Filtering Logic ---
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes from all buttons
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
+                    b.classList.add('bg-gray-100', 'text-gray-600', 'dark:bg-gray-800', 'dark:text-gray-300');
+                });
+                // Add active classes to clicked button
+                btn.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
+                btn.classList.remove('bg-gray-100', 'text-gray-600', 'dark:bg-gray-800', 'dark:text-gray-300');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'flex';
+                        // Small fade in effect
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
     </script>
