@@ -120,7 +120,7 @@
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-4">My Skills</h2>
             <div class="w-16 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
             
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 text-center">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-6 text-center">
                 <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fab fa-html5 text-orange-500 text-4xl mb-3"></i>
                     <h3 class="font-semibold">HTML5</h3>
@@ -144,6 +144,10 @@
                 <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fas fa-bolt text-amber-500 text-4xl mb-3 animate-pulse"></i>
                     <h3 class="font-semibold">Vibe Coding</h3>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition group">
+                    <i class="fas fa-lightbulb text-yellow-400 text-4xl mb-3 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)] dark:drop-shadow-[0_0_15px_rgba(250,204,21,1)] animate-bounce"></i>
+                    <h3 class="font-semibold">Problem Solving</h3>
                 </div>
                 <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition">
                     <i class="fab fa-git-alt text-orange-600 text-4xl mb-3"></i>
@@ -271,7 +275,7 @@
             </div>
             <p class="text-sm">&copy; 2026 Syed Tawhidul Hoque. All rights reserved.</p>
         </div>
-    </footer>
+    </nav>
 
     <script>
         // --- 1. Hamburger Menu Logic ---
@@ -415,16 +419,16 @@
                 .then(async (response) => {
                     let res = await response.json();
                     if (response.status == 200) {
-                        alert("ধন্যবাদ ব্রো! আপনার মেসেজটি সফলভাবে পাঠানো হয়েছে।");
+                        alert("Congrat's,your massage has been sended successfully!");
                         form.reset();
                     } else {
                         console.log(response);
-                        alert("দুঃখিত, কোনো সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                        alert("Sorry,massage sending fail please try again");
                     }
                 })
                 .catch(error => {
                     console.log(error);
-                    alert("নেটওয়ার্ক সমস্যা! দয়া করে পরে চেষ্টা করুন।");
+                    alert("Network problem!Please try later।");
                 })
                 .then(function() {
                     submitBtn.textContent = originalBtnText;
